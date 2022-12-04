@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth import User
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class CompanyModel(models.Model):
@@ -52,8 +53,8 @@ class GaleryCompanyModel(models.Model):
     '''
     Modelo galeria de fotos de la compañia
     '''
-    photo=models.FileField(upload_to='/Company')
-    company=models.ForeignKey(CompanyModel)
+    photo=models.FileField(upload_to='company')
+    company=models.ForeignKey(CompanyModel, on_delete= models.CASCADE)
 
     class Meta:
         verbose_name="Galeria de la compañia"
@@ -65,7 +66,7 @@ class CommentCompanyModel(models.Model):
     Modelo de comentarios
     '''
     comment=models.TextField("Comentarios", max_length=500)
-    user=models.ForeignKey(User)
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name="Comentario de usuario a empresa"
