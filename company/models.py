@@ -7,11 +7,12 @@ class CompanyModel(models.Model):
     '''
     Modelo de empresas
     '''
+    logo= models.FileField(upload_to='logos', blank=True)
     nit=models.CharField("NIT", max_length=20, unique=True)
     description= models.TextField("Descripción", blank=True)
     mision=models.TextField("Misión", blank=True)
     vision=models.TextField("Visión", blank=True)
-    name=models.CharField("Nombre", max_length=50)
+    name=models.CharField("Nombre del Emprendimiento", max_length=50)
     facebook=models.CharField("Facebook", max_length=150, blank=True)
     linkedin=models.CharField("linkedin", max_length=150, blank=True)
     instagram=models.CharField("Instagram", max_length=150, blank=True)

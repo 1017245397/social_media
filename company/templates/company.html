@@ -1,22 +1,62 @@
-{% include 'index.html' %}
-{% block content %}
-col-xs col-sm col-md col-lg col-xl col-xxl
+{% include 'index.html' %} 
+{% block content %} 
+
 <div class="row">
-    <div class="col-12">
-        <form action="">
-            <div class="mb-3 row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword">
-                </div>
-            </div>
-        </form>
+    {%for field in form_profile_user%}
+        <div class="col-6">
+            <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+        </div> 
+    {% endfor %}
+    {%for field in form_company%}
+        <div class="col-6">
+            <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+        </div> 
+    {%endfor%}
+    {%for field in form_category_company%}
+        <div class="col-6">
+            <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+        </div> 
+    {%endfor%}
+    {%for field in form_contact_company%}
+        <div class="col-6">
+            <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+        </div> 
+    {%endfor%}
+        
+
+
+
+</div>
+
+{% comment %} <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="{{form_company.description.name}}-tab" data-bs-toggle="pill" data-bs-target="#{{form_company.description.name}}" type="button" role="tab" aria-controls="{{form_company.description.name}}" aria-selected="true">
+                {{form_company.description.label}}
+            </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="{{form_company.vision.name}}-tab" data-bs-toggle="pill" data-bs-target="#{{form_company.vision.name}}" type="button" role="tab" aria-controls="{{form_company.vision.name}}" aria-selected="false">
+                {{form_company.vision.label}}
+            </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="{{form_company.mision.name}}-tab" data-bs-toggle="pill" data-bs-target="#{{form_company.mision.name}}" type="button" role="tab" aria-controls="{{form_company.mision.name}}" aria-selected="false">
+                {{form_company.mision.label}}
+            </button>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="{{form_company.description.name}}" role="tabpanel" aria-labelledby="{{form_company.description.name}}-tab">
+        {{form_company.description}}
+    </div>
+    <div class="tab-pane fade" id="{{form_company.vision.name}}" role="tabpanel" aria-labelledby="{{form_company.vision.name}}-tab">
+        {{form_company.vision}}
+    </div>
+    <div class="tab-pane fade" id="{{form_company.mision.name}}" role="tabpanel" aria-labelledby="{{form_company.mision.name}}-tab">
+        {{form_company.mision}}
     </div>
 </div>
+
+</div> {% endcomment %}
+
 {% endblock %}
