@@ -2,7 +2,13 @@
 {% block content %} 
 
 <div class="row">
-    {%for field in form_profile_user%}
+    {%for field in form_register_company%}
+        <div class="col-6">
+            <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
+        </div> 
+    {%endfor%}
+
+    {% comment %} {%for field in form_profile_user%}
         <div class="col-6">
             <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
         </div> 
@@ -21,7 +27,7 @@
         <div class="col-6">
             <label for="{{ field.name}}">{{ field.label}}</label>{{ field }}
         </div> 
-    {%endfor%}
+    {%endfor%} {% endcomment %}
         
 
 
