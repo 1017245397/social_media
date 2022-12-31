@@ -11,7 +11,13 @@ class CompanyTemplateView(TemplateView):
         return context
 
 
-class ExampleTemplateView(TemplateView):
-    template_name: str = "example.html"
+class LoginTemplateView(TemplateView):
+    template_name: str = "login.html"
+
+class PublicationTemplateView(TemplateView):
+    template_name: str = "publication.html"
+
+class ProfileTemplateView(TemplateView):
+    template_name: str = "profile.html"
     
 
