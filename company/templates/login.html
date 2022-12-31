@@ -1,0 +1,24 @@
+{% include 'index.html' %} 
+{% block content %} 
+
+<div class="container h-200 d-flex justify-content-center align-items-center">
+  <div class="card bg-light border-dark" style="width: 25rem; height: 15rem">
+    <div class="card-body">
+      <h5 class="card-title text-success">Iniciar sesión</h5>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control border-success text-success" name="username" placeholder="Nombre de usuario">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control border-success text-success" name="password" placeholder="Contraseña">
+        </div>
+        <a href="#" class="text-success">Olvidé mi contraseña</a>
+        
+        <a href="#" class="text-success">Registrarse</a>
+        <button type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
