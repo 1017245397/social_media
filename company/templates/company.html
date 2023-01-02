@@ -5,18 +5,19 @@
 {% endblock %}
 
 {% block content %} 
-<div class="card col-md-8 offset-md-2 mt-4">
+<div class="card col-md-8 offset-md-2 mt-4 border-success">
     <div class="card-body">
       <form class="row" id="form-company">
         {% csrf_token %}
         {% for item in form_register_company %}
           <div class="form-group col-md-4">
             <label>{{ item.label }}</label>
-            <input type="text" name="{{ item.name }}" class="form-control" value="">
+            <input type="text" name="{{ item.name }}" class="form-control border-success" value="">
             <span class="help-block">{{ item.help }}</span>
           </div>
         {% endfor %}
-        <button type="button" id="save-company" class="btn btn-primary mt-2">Submit</button>
+        <button type="button" id="save-company" class="btn btn-success mt-2 border-success">
+        Registrarse</button>
       </form>
     </div>
   </div>

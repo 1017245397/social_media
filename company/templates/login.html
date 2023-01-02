@@ -2,20 +2,26 @@
 {% block content %} 
 
 <div class="container h-200 d-flex justify-content-center align-items-center">
-  <div class="card bg-light border-dark" style="width: 25rem; height: 15rem">
-    <div class="card-body">
-      <h5 class="card-title text-success">Iniciar sesión</h5>
-      <form>
-        <div class="form-group">
-          <input type="text" class="form-control border-success text-success" name="username" placeholder="Nombre de usuario">
+  <div class="card bg-light border-success" style="width: 25rem; height: 15rem border-color=">
+    <div class="card-body mt-2">
+      <h5 class="card-title text-success" style="text-align: center">Iniciar sesión</h5>
+      <form class="">
+        <div class="form-group mt-2">
+          <input type="text" class="form-control border-success text-success mt-2" name="username" 
+          placeholder="Nombre de usuario">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control border-success text-success" name="password" placeholder="Contraseña">
+          <input type="password" class="form-control border-success text-success mt-2" name="password" 
+          placeholder="Contraseña">
         </div>
-        <a href="#" class="text-success">Olvidé mi contraseña</a>
+        <div class="row mt-2">
+        <a href="#" class="text-success col-sm-6">Olvidé mi contraseña</a>
         
-        <a href="#" class="text-success">Registrarse</a>
-        <button type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
+        <a href="#" class="text-success col-6 md-4" style="text-align: right">Registrarse</a>
+        </div>
+        <div class="row mt-2">
+        <button type="submit" class="btn btn-success btn-block col-sm-6,5">Iniciar sesión</button>
+        </div>
       </form>
     </div>
   </div>

@@ -5,11 +5,153 @@
 {% endblock %}
 
 {% block content %} 
-
+<div class="bio">
+    <img src="foto.jpg" alt="Foto de perfil" class="foto">
+    <h1 class="nombre">Nombre Apellido</h1>
+    <p class="descripcion">Breve descripción sobre ti</p>
+    <div>
+        <ul class="informacion">
+        <li><strong>Fecha de nacimiento:</strong> Fecha</li>
+        <li><strong>Ciudad:</strong> Ciudad</li>
+        <li><strong>Trabajo:</strong> Trabajo</li>
+        <li><strong>Escuela:</strong> Escuela</li>
+        </ul>
+        <form>
+            <h2>Datos de emprendedor</h2>
+            <label for="numero-identificacion">Número de identificación</label><br>
+            <input type="text" id="numero-identificacion" name="numero-identificacion"><br>
+            <label for="nombres">Nombres</label><br>
+            <input type="text" id="nombres" name="nombres"><br>
+            <label for="apellidos">Apellidos</label><br>
+            <input type="text" id="apellidos" name="apellidos"><br>
+            <label for="correo-electronico">Correo electrónico</label><br>
+            <input type="email" id="correo-electronico" name="correo-electronico"><br>
+            <label for="numero">Número</label><br>
+            <input type="text" id="numero" name="numero"><br>
+            <label for="contrasena">Contraseña</label><br>
+            <input type="password" id="contrasena" name="contrasena"><br>
+            <label for="confirmar-contrasena">Confirmar contraseña</label><br>
+            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena"><br>
+            <label for="documentos">Documentos</label><br>
+            <select id="documentos" name="documentos">
+              <option value="D"></option>
+        </form>
+        <form>
+            <h2>Datos de emprendedor</h2>
+            <label for="numero-identificacion">Número de identificación</label><br>
+            <input type="text" id="numero-identificacion" name="numero-identificacion"><br>
+            <label for="nombres">Nombres</label><br>
+            <input type="text" id="nombres" name="nombres"><br>
+            <label for="apellidos">Apellidos</label><br>
+            <input type="text" id="apellidos" name="apellidos"><br>
+            <label for="correo-electronico">Correo electrónico</label><br>
+            <input type="email" id="correo-electronico" name="correo-electronico"><br>
+            <label for="numero">Número</label><br>
+            <input type="text" id="numero" name="numero"><br>
+            <label for="contrasena">Contraseña</label><br>
+            <input type="password" id="contrasena" name="contrasena"><br>
+            <label for="confirmar-contrasena">Confirmar contraseña</label><br>
+            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena"><br>
+            <label for="documentos">Documentos</label><br>
+            <select id="documentos" name="documentos">
+              <option value="DNI">DNI</option>
+              <option value="Pasaporte">Pasaporte</option>
+              <option value="Cédula">Cédula</option>
+            </select><br>
+            <label for="genero">Género</label><br>
+            <select id="genero" name="genero">
+              <option value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+              <option value="Otro">Otro</option>
+            </select><br>
+            <label for="estado-civil">Estado civil</label><br>
+            <select id="estado-civil" name="estado-civil">
+              <option value="Soltero">Soltero</option>
+              <option value="Casado">Casado</option>
+              <option value="Viudo">Viudo</option>
+              <option value="Divorciado">Divorciado</option>
+            </select><br>
+            
+    </div>
+</div>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+        <a class="nav-link active" href="#">Pestaña 1</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Pestaña 2</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Pestaña 3</a>
+        </li>
+    </ul> 
+</div>
+<div class="card col-md-8 offset-md-2 mt-4 border-success">
+    <div class="card-body">
+      <form class="row" id="form-company">
+        {% csrf_token %}
+        {% for item in form_register_company %}
+          <div class="form-group col-md-4">
+            <label>{{ item.label }}</label>
+            <input type="text" name="{{ item.name }}" class="form-control border-success" value="">
+            <span class="help-block">{{ item.help }}</span>
+          </div>
+        {% endfor %}
+        <button type="button" id="save-company" class="btn btn-success mt-2 border-success">
+        Registrarse</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
     <script>
+        const url_api_company = "" 
+        const button = document.querySelector('#save-company');
         
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        button.addEventListener('click', function() {
+            const form = document.querySelector('#form-company');
+            const formData = new FormData(form);
+            
+            // const options = {
+            //     method: 'POST',
+            //     body: formData.toString(),
+            //     headers: {
+            //         'X-CSRFToken': csrftoken
+            //     }
+            // };
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
+            };
+
+            fetch(url_api_company, options).then(response => {
+                // Procesa la respuesta del servidor
+            });
+        });
     </script>
 {% endblock %}
+
