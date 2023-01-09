@@ -16,7 +16,7 @@ class CompanyModel(models.Model):
     facebook=models.CharField("Facebook", max_length=150, blank=True)
     linkedin=models.CharField("linkedin", max_length=150, blank=True)
     instagram=models.CharField("Instagram", max_length=150, blank=True)
-    twitter=models.CharField("Twitter", max_length=150, blank=True)
+    email_company=models.CharField("Correo de la compañia", max_length=150, blank=True)
     web_site=models.CharField("Sitio Web", max_length=150, blank=True)
 
     class Meta:

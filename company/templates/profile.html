@@ -1,157 +1,159 @@
-{% include 'index.html' %} 
+{% extends 'index.html' %} 
+{% load static %}
+
 
 {% block style %}
+<style>
+  textarea{ 
+    width:100%;
+  }
+</style>
 
 {% endblock %}
 
 {% block content %} 
-<div class="bio">
-    <img src="foto.jpg" alt="Foto de perfil" class="foto">
-    <h1 class="nombre">Nombre Apellido</h1>
-    <p class="descripcion">Breve descripción sobre ti</p>
-    <div>
-        <ul class="informacion">
-        <li><strong>Fecha de nacimiento:</strong> Fecha</li>
-        <li><strong>Ciudad:</strong> Ciudad</li>
-        <li><strong>Trabajo:</strong> Trabajo</li>
-        <li><strong>Escuela:</strong> Escuela</li>
-        </ul>
-        <form>
-            <h2>Datos de emprendedor</h2>
-            <label for="numero-identificacion">Número de identificación</label><br>
-            <input type="text" id="numero-identificacion" name="numero-identificacion"><br>
-            <label for="nombres">Nombres</label><br>
-            <input type="text" id="nombres" name="nombres"><br>
-            <label for="apellidos">Apellidos</label><br>
-            <input type="text" id="apellidos" name="apellidos"><br>
-            <label for="correo-electronico">Correo electrónico</label><br>
-            <input type="email" id="correo-electronico" name="correo-electronico"><br>
-            <label for="numero">Número</label><br>
-            <input type="text" id="numero" name="numero"><br>
-            <label for="contrasena">Contraseña</label><br>
-            <input type="password" id="contrasena" name="contrasena"><br>
-            <label for="confirmar-contrasena">Confirmar contraseña</label><br>
-            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena"><br>
-            <label for="documentos">Documentos</label><br>
-            <select id="documentos" name="documentos">
-              <option value="D"></option>
-        </form>
-        <form>
-            <h2>Datos de emprendedor</h2>
-            <label for="numero-identificacion">Número de identificación</label><br>
-            <input type="text" id="numero-identificacion" name="numero-identificacion"><br>
-            <label for="nombres">Nombres</label><br>
-            <input type="text" id="nombres" name="nombres"><br>
-            <label for="apellidos">Apellidos</label><br>
-            <input type="text" id="apellidos" name="apellidos"><br>
-            <label for="correo-electronico">Correo electrónico</label><br>
-            <input type="email" id="correo-electronico" name="correo-electronico"><br>
-            <label for="numero">Número</label><br>
-            <input type="text" id="numero" name="numero"><br>
-            <label for="contrasena">Contraseña</label><br>
-            <input type="password" id="contrasena" name="contrasena"><br>
-            <label for="confirmar-contrasena">Confirmar contraseña</label><br>
-            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena"><br>
-            <label for="documentos">Documentos</label><br>
-            <select id="documentos" name="documentos">
-              <option value="DNI">DNI</option>
-              <option value="Pasaporte">Pasaporte</option>
-              <option value="Cédula">Cédula</option>
-            </select><br>
-            <label for="genero">Género</label><br>
-            <select id="genero" name="genero">
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-              <option value="Otro">Otro</option>
-            </select><br>
-            <label for="estado-civil">Estado civil</label><br>
-            <select id="estado-civil" name="estado-civil">
-              <option value="Soltero">Soltero</option>
-              <option value="Casado">Casado</option>
-              <option value="Viudo">Viudo</option>
-              <option value="Divorciado">Divorciado</option>
-            </select><br>
-            
-    </div>
-</div>
-<div>
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-        <a class="nav-link active" href="#">Pestaña 1</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Pestaña 2</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Pestaña 3</a>
-        </li>
-    </ul> 
-</div>
-<div class="card col-md-8 offset-md-2 mt-4 border-success">
+ 
+<div class="container">
+  <div class="card border-success mt-2">
     <div class="card-body">
-      <form class="row" id="form-company">
-        {% csrf_token %}
-        {% for item in form_register_company %}
-          <div class="form-group col-md-4">
-            <label>{{ item.label }}</label>
-            <input type="text" name="{{ item.name }}" class="form-control border-success" value="">
-            <span class="help-block">{{ item.help }}</span>
-          </div>
-        {% endfor %}
-        <button type="button" id="save-company" class="btn btn-success mt-2 border-success">
-        Registrarse</button>
-      </form>
+      <h2>Datos de emprendedor</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Contenido de la primera columna -->
+          <label class="text-success" for="documentos">Documentos</label><br>
+          <select class="form-control border-success" id="documentos" name="type_document">
+            <option value="1"></option>   
+            <option value="DNI">DNI</option>
+            <option value="Pasaporte">Cedula de Extranjeria</option>
+            <option value="Cédula">Cédula</option>
+          </select><br>
+          <label class="text-success" for="nombres">Nombres</label><br>
+          <input class="form-control border-success" type="text" id="nombres" name="first_names"><br>
+          <label class="text-success" for="fecha">Fecha</label><br>
+          <input class="form-control border-success" type="date" id="fecha" name="birthdate"><br>
+          <label class="text-success" for="estado-civil">Estado civil</label><br>
+          <select class="form-control border-success" id="estado-civil" name="civil_status">
+            <option value="1"></option>   
+            <option value="Soltero">Soltero</option>
+            <option value="Casado">Casado</option>
+            <option value="Viudo">Viudo</option>
+            <option value="Divorciado">Divorciado</option>
+          </select><br>
+
+        </div>
+        <div class="col-md-6">
+          <!-- Contenido de la segunda columna -->
+          <label class="text-success" for="numero-identificacion ">Número de identificación</label><br>
+          <input class="form-control border-success" type="text" id="numero-identificacion" name="document"><br>
+          <label class="text-success" for="apellidos">Apellidos</label><br>
+          <input class="form-control border-success" type="text" id="apellidos" name="last_names"><br>
+          <label class="text-success" for="genero">Género</label><br>
+          <select class="form-control border-success" id="genero" name="gender">
+            <option value="1"></option>   
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Otro">Otro</option>
+          </select><br>
+          <label class="text-success" for="numero">Número de telefono</label><br>
+          <input class="form-control border-success" type="text" id="numero" name="phone_number"><br>  
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="card border-success mt-2">
+    <div class="card-body">
+      <h2>Datos de emprendimiento</h2>    
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Contenido de la primera columna -->
+          <label class="text-success" for="razon_social">Razon Social</label><br>
+          <input class="form-control border-success" type="text" id="razon_social" name="razon_social"><br>
+          <label class="text-success" for="poblacion_emprendimiento">Emprendimiento realizado por</label><br>
+          <select class="form-control border-success" id="poblacion_emprendimiento" name="poblacion_emprendimiento">
+            <option value="1"></option>   
+            <option value="Poblacion victima de violencia">Poblacion victima de violencia</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select><br>
+          <label class="text-success" for="departamento">Departamento</label><br>
+          <input class="form-control border-success" type="text" id="departamento" name="department"><br>
+          <label class="text-success" for="email_company">Dirección</label><br>
+          <input class="form-control border-success" type="text" id="email_company" name="email_company"><br>
+          <label class="text-success" for="facebook">Facebook</label><br>
+          <input class="form-control border-success" type="text" id="facebook" name="facebook"><br>
+          <label class="text-success" for="linkedin">Linkedin</label><br>
+          <input class="form-control border-success" type="text" id="linkedin" name="linkedin"><br>         
+        </div>
+        <div class="col-md-6">
+          <!-- Contenido de la segunda columna -->
+          <label class="text-success" for="nit">NIT</label><br>
+          <input class="form-control border-success" type="text" id="nit" name="nit"><br>
+          <label class="text-success" for="categoria">Categorias</label><br>
+          <select class="form-control border-success" id="poblacion_emprendimiento" name="poblacion_emprendimiento"  {% comment %} multiple {% endcomment %} >
+            <option value="1"></option>            
+            <option value="comida">Comida</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select><br>
+          <label class="text-success" for="ciudad">Ciudad</label><br>
+          <input class="form-control border-success" type="text" id="ciudad" name="city"><br>
+          <label class="text-success" for="numero_celular">Numero de celular</label><br>
+          <input class="form-control border-success" type="text" id="numero_celular" name="cell_phone"><br>
+          <label class="text-success" for="instagram">Instagram</label><br>
+          <input class="form-control border-success" type="text" id="instagram" name="instagram"><br>
+          <label class="text-success" for="email_company">Correo de la compañia</label><br>
+          <input class="form-control border-success" type="text" id="email_company" name="email_company"><br>               
+        </div>
+        <div>
+          <label class="text-success" for="descripcion">Descripción</label><br>
+          <textarea class="form-control border-success" type="text" id="descripcion" name="description"></textarea>
+          <label class="text-success mt-3" for="mision">Misión</label><br>
+          <textarea class="form-control border-success" type="text" id="mision" name="mision"></textarea>
+          <label class="text-success mt-3" for="vision">Visión</label><br>
+          <textarea class="form-control border-success" type="text" id="vision" name="vision"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+<div class="card border-success mt-2">
+  <div class="card-body">
+    <h2>Usuario</h2> 
+      <div class="row">
+        <div>
+          <label class="text-success" for="correo-electronico-usuario">Correo electrónico</label><br>        
+          <input class="form-control border-success" type="email" id="correo-electronico" name="user"><br>
+        </div>
+        <div class="col-md-6">
+          <!-- Contenido de la primera columna -->
+
+          <label class="text-success" for="contrasena">Contraseña</label><br>
+          <input class="form-control border-success" type="password" id="contrasena" name="contrasena"><br>
+        </div>
+        <div class="col-md-6">
+          <!-- Contenido de la segunda columna -->
+
+          <label class="text-success" for="confirmar-contrasena">Confirmar contraseña</label><br>
+          <input class="form-control border-success" type="password" id="confirmar-contrasena" name="confirmar-contrasena"><br>    
+        </div>
+        <div>
+          <button type="button" id="save-company" class="btn btn-success border-success">
+          Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+       
 {% endblock %}
 
 {% block javascript %}
-    <script>
-        const url_api_company = "" 
-        const button = document.querySelector('#save-company');
-        
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
 
-        const csrftoken = getCookie('csrftoken');
-
-        button.addEventListener('click', function() {
-            const form = document.querySelector('#form-company');
-            const formData = new FormData(form);
-            
-            // const options = {
-            //     method: 'POST',
-            //     body: formData.toString(),
-            //     headers: {
-            //         'X-CSRFToken': csrftoken
-            //     }
-            // };
-
-            const options = {
-                method: 'GET',
-                headers: {
-                    'X-CSRFToken': csrftoken
-                }
-            };
-
-            fetch(url_api_company, options).then(response => {
-                // Procesa la respuesta del servidor
-            });
-        });
-    </script>
 {% endblock %}
 
