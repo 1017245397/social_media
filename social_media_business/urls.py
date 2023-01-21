@@ -19,6 +19,9 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-company/', include('company.urls.api_urls')),
-    path('company/', include('company.urls.render_urls', namespace='company'))
+    path('api-location/', include('location.urls.api_urls')),
+    path('api-user/', include('user.urls.api_urls')),
+    path('', include('company.urls.render_urls', namespace='company')),
+    path('__debug__/', include('debug_toolbar.urls'))
 ]
 

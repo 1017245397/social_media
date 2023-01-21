@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from user.globals import TYPE_DOCUMENT_CHOICES, CIVIL_ESTATUS_CHOICES, GENDER_CHOICES
 
 
-
-
 # Create your models here.
 class ProfileUserModel(models.Model):
     '''Modelo del Usuario'''

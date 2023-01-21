@@ -18,61 +18,39 @@
   <div class="row">
     <div class="col-md-4" style="text-align: center; background-color: #d8f8e1!important;
      padding: 35px; align-items: center">
-
       <!-- Contenido de la primera columna -->
       <img src="{% static 'img/imagotipo-pilar.png' %}"  alt="Imagen 2" class"foto">
       <p class="tipo_comunidad text-center">
-      <strong>NIT:</strong> <div class="" id="nit"></div> 
+        <strong>NIT:</strong> <div class="" id="nit"></div>
       </p> 
       <strong>Emprendimeitno realizado por:</strong>
-      <p class="tipo_comunidad" id="category">
-        
-      </p>
+      <p class="tipo_comunidad" id="category"></p>
       <strong>DATOS DE CONTACTO</strong>
       <strong>Departamento:</strong>
-      <p class="tipo_comunidad" id="department">
-        
-      </p>
+      <p class="tipo_comunidad" id="department"></p>
       <strong>Ciudad:</strong>
-      <p class="tipo_comunidad" id="city">
-        
-      </p>
+      <p class="tipo_comunidad" id="city"></p>
       <strong>Dirección:</strong>
-      <p class="tipo_comunidad" id="address">
-        
-      </p>
+      <p class="tipo_comunidad" id="address"></p>
       <strong>Numero de Contacto:</strong>
-      <p class="tipo_comunidad" id="number">
-        
-      </p>
+      <p class="tipo_comunidad" id="number"></p>
       <strong>Pagina web:</strong>
-      <p class="tipo_comunidad" id="web_site">
-        
-      </p>
+      <p class="tipo_comunidad" id="web_site"></p>
     </div>
     <div class="col-md-8">
       <!-- Contenido de la segunda columna -->
       <label class=""for="nombres"><strong>Razon Social:</strong></label>
       <h1 class="nombre" id="name"></h1>
       <strong>Descripción:</strong>
-      <p class="" id="description">
-     
-      </p>
+      <p class="" id="description"></p>
       <strong>Misión:</strong>
-      <p class="" id="mision">
-      
-      </p>
+      <p class="" id="mision"></p>
       <strong>Visión:</strong>
-      <p class="" id="vision">
-      
-      </p>
+      <p class="" id="vision"></p>
       <div>
     </div>
   </div>
 </div>
-
-
-
 {% endblock %}
 
 {% block javascript %}
@@ -80,66 +58,25 @@
   function getCompany(id) {
     // Set the endpoint URL
     var url = `/api-company/list/${id}`;
-  
-     // get data companies 
+    
+    // get data companies 
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const documento= document.getElementById("nit");
-    documento.innerHTML= data.nit;
-    const category= document.getElementById("category");
-    category.innerHTML= "1.111.111";
-    const departament= document.getElementById("department");
-    departament.innerHTML="1.111.111";
-    const city= document.getElementById("city");
-    city.innerHTML="1.111.111";
-    const address= document.getElementById("address");
-    address.innerHTML=data.address;
-    const number= document.getElementById("number");
-    number.innerHTML="1.111.111";
-    const website= document.getElementById("web_site");
-    website.innerHTML= data.web_site;
-    const name= document.getElementById("name");
-    name.innerHTML= data.name;
-    const description = document.getElementById("description");
-    description.innerHTML= data.description;
-    const mision= document.getElementById("mision");
-    mision.innerHTML=data.mision;
-    const vision= document.getElementById("vision");
-    vision.innerHTML= data.vision;
-
-
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.innerHTML = data[key];
+          } catch (error) {
+            console.log(key)
+        }
+      })
     });
   }
+
   document.addEventListener("DOMContentLoaded",function(event){
     getCompany("{{id}}");
   });
-
-  function example(){
-    const documento= document.getElementById("documento");
-    documento.innerHTML="1.111.111";
-    const category= document.getElementById("category");
-    category.innerHTML="1.111.111";
-    const departament= document.getElementById("department");
-    departament.innerHTML="1.111.111";
-    const city= document.getElementById("city");
-    city.innerHTML="1.111.111";
-    const address= document.getElementById("address");
-    address.innerHTML="1.111.111";
-    const number= document.getElementById("number");
-    number.innerHTML="1.111.111";
-    const website= document.getElementById("website");
-    website.innerHTML="1.111.111";
-    const name= document.getElementById("name");
-    name.innerHTML="1.111.111";
-    const description = document.getElementById("description");
-    description.innerHTML="1.111.111";
-    const mision= document.getElementById("mision");
-    mision.innerHTML="1.111.111";
-    const vision= document.getElementById("vision");
-    vision.innerHTML="1.111.111";
-
-  }
   </script>
 {% endblock %}
 

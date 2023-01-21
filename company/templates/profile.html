@@ -3,7 +3,6 @@
 
 
 {% block style %}
-{{id}}
 <style>
   textarea{ 
     width:100%;
@@ -13,7 +12,6 @@
 {% endblock %}
 
 {% block content %} 
-{{di}}
 <form id="register">
   <div class="container">
     <div class="card border-success mt-2">
@@ -70,8 +68,8 @@
         <div class="row">
           <div class="col-md-6">
             <!-- Contenido de la primera columna -->
-            <label class="text-success" for="razon_social">Razon Social</label><br>
-            <input class="form-control border-success" type="text" id="razon_social" name="name"><br>
+            <label class="text-success" for="name">Razon Social</label><br>
+            <input class="form-control border-success" type="text" id="name" name="name"><br>
             <label class="text-success" for="departamento">Departamento</label><br>
             <input class="form-control border-success" type="text" id="departamento" name="department"><br>
             <label class="text-success" for="email_company">Dirección</label><br>
@@ -101,12 +99,12 @@
             <input class="form-control border-success" type="text" id="numero_celular" name="cell_phone"><br>
             <label class="text-success" for="instagram">Instagram</label><br>
             <input class="form-control border-success" type="text" id="instagram" name="instagram"><br>
-            <label class="text-success" for="pagina web">Pagina Web</label><br>
-            <input class="form-control border-success" type="text" id="pagina web" name="web_site"><br>            
+            <label class="text-success" for="web_site">Pagina Web</label><br>
+            <input class="form-control border-success" type="text" id="web_site" name="web_site"><br>            
           </div>
           <div>
-            <label class="text-success" for="descripcion">Descripción</label><br>
-            <textarea class="form-control border-success" type="text" id="descripcion" name="description"></textarea>
+            <label class="text-success" for="description">Descripción</label><br>
+            <textarea class="form-control border-success" type="text" id="description" name="description"></textarea>
             <label class="text-success mt-3" for="mision">Misión</label><br>
             <textarea class="form-control border-success" type="text" id="mision" name="mision"></textarea>
             <label class="text-success mt-3" for="vision">Visión</label><br>
@@ -138,7 +136,7 @@
             <input class="form-control border-success" type="password" id="confirmar-contrasena" name="confirm-password"><br>    
           </div>
           <div>
-            <button type="button" id="save-company" class="btn btn-success border-success" onclick="sendPOSTRequest()">
+            <button type="button" id="save-company" class="btn btn-success border-success" onclick="saveCompany()">
             Guardar
             </button>
           </div>
@@ -150,7 +148,14 @@
 {% endblock %}
 
 {% block javascript %}
+
 <script>
+  var id = false;
+
+  {% if id %}
+    var id = "{{id}}";
+  {% endif %}
+
   function getFormValues() {
     // Select the form element
     var form = document.querySelector("form");
@@ -173,25 +178,155 @@
       return JSON.stringify(object);
   }
 
-
-function sendPOSTRequest() {
-  // Set the endpoint URL
-  var url = "/api-company/list/";
-
-  // Set the request body
-  var data =  getFormValues() ;
-  console.log(data) 
-  // Send the request
-  fetch(url, {
-    method: "POST",
-    body: data,
-    headers: {
-      "Content-Type": "application/json"
+  function saveUser () {
+    // Set the endpoint URL
+    var url = "/api-user/user/";
+    
+    if (id) {
+      url += `${id}/`
     }
-  }).then(function(data) {
+
+    // Set the request body
+    var data =  getFormValues();
+
+    // Send the request
+    fetch(url, {
+      method: id ? "PUT" : "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function(data) {
       console.log(data);
     });
-}
+  }
+
+  function saveProfileUser () {
+    // Set the endpoint URL
+    var url = "/api-user/profile-user/";
+    
+    if (id) {
+      url += `${id}/`
+    }
+
+    // Set the request body
+    var data =  getFormValues();
+
+    // Send the request
+    fetch(url, {
+      method: id ? "PUT" : "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function(data) {
+      console.log(data);
+    });
+  }
+
+  function saveCompany() {
+    // Set the endpoint URL
+    var url = "/api-company/list/";
+    if (id) {
+      url += `${id}/`
+    }
+
+    // Set the request body
+    var data =  getFormValues();
+
+    // Send the request
+    fetch(url, {
+      method: id ? "PUT" : "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function(data) {
+      console.log(data);
+    });
+  }
+
+  function getCompany(id) {
+    // Set the endpoint URL
+    var url = `/api-company/list/${id}`;
+    
+    // get data companies 
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.value = data[key];
+          } catch (error) {
+            console.log(key)
+        }
+      })
+    });
+  }
+  
+  function getCountry() {
+    // Set the endpoint URL
+    var url = `/api-location/country/`;
+    
+    // get data companies 
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.value = data[key];
+          } catch (error) {
+            console.log(key)
+        }
+      })
+    });
+  }
+  
+  function getDeparment() {
+    // Set the endpoint URL
+    var url = `/api-location/deparment/`;
+    
+    // get data companies 
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.value = data[key];
+          } catch (error) {
+            console.log(key)
+        }
+      })
+    });
+  }
+  
+  function getCity() {
+    // Set the endpoint URL
+    var url = `/api-location/city/`;
+    
+    // get data companies 
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.value = data[key];
+          } catch (error) {
+            console.log(key)
+        }
+      })
+    });
+  }
+  
+  document.addEventListener("DOMContentLoaded",function(event){
+    if (id) {
+      getCompany("{{id}}");
+    }
+  });
 </script>
 {% endblock %}
 

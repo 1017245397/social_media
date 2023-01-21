@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from location.models import CountryModel, DeparmentModel, CityModel
 
 
 # Create your models here.
@@ -18,6 +19,10 @@ class CompanyModel(models.Model):
     instagram=models.CharField("Instagram", max_length=150, blank=True)
     email_company=models.CharField("Correo de la compañia", max_length=150, blank=True)
     web_site=models.CharField("Sitio Web", max_length=150, blank=True)
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    country = models.ForeignKey(CountryModel, on_delete=models.CASCADE)
+    deparment = models.ForeignKey(DeparmentModel, on_delete=models.CASCADE)
+    city = models.ForeignKey(CityModel, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name="Empresa"
@@ -72,5 +77,3 @@ class CommentCompanyModel(models.Model):
     class Meta:
         verbose_name="Comentario de usuario a empresa"
         verbose_name="Comentarios de usuarios a empresas"
-
-    
