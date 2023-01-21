@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block style %}
+
 <style>
 a {
   text-decoration: none;
@@ -36,26 +37,46 @@ a {
       </div>
     </div>
 </div>
-    <div class="container">
-      <div class="row" >
-        {%for i in  x %}
-        <div class="col-sm-6 col-md-4 col-lg-2 my-4" >
-          <a href="{% url 'company:details' %}" class="style-none">
-            <div class="card border-success"  >
-              <img src="{% static 'img/categoria-cocina.png'%}" alt="Imagen de la tarjeta {{i}}">
-              <div class="card-body" >
-                <h5 class="card-title">Título de la tarjeta {{i}}</h5>
-                <p class="card-text">Categoría de la tarjeta {{i}}</p>
-              </div>
-            </div>
-          </a>  
-        </div>
-        {%endfor%}
-  
+<div class="container">
+  <div class="row" id="companyList" >
+
+  </div>
+</div>
+      
+        
 {% endblock %}
 
 {% block javascript %}
+<script>
+function getCompanies() {
+  // Set the endpoint URL
+  var url = "/api-company/list/";
+  var urlDetails = "/company/details";
 
+   // get data companies 
+  fetch(url)
+  .then((response) => response.json())
+  .then((data) => data.forEach(company => {
+    const div = document.getElementById('companyList');
+    var urlDetailsId = `${urlDetails}/${company.id}`
+    div.innerHTML += `        
+    <div class="col-sm-6 col-md-4 col-lg-2 my-4" >
+      <a href="${urlDetailsId}" class="style-none">
+        <div class="card border-success"  >
+          <img src="" alt="Imagen de la tarjeta">
+          <div class="card-body" >
+            <h5 class="card-title">${company.name} </h5>
+            <p class="card-text">Categoría de la tarjeta </p>
+          </div>
+        </div>
+      </a>  
+    </div>`;
+  }));
+}
+document.addEventListener("DOMContentLoaded",function(event){
+  getCompanies();
+});
+</script>
          
 {% endblock %}
 

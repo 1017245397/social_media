@@ -20,7 +20,9 @@
               <input type="password" class="form-control border-success text-success" name="password" placeholder="Contraseña">
             </div >
             <div class="mx-auto d-flex justify-content-between mt-3 btn-sm-1">
-              <button type="submit" class="btn btn-success">Registrarse</button>
+              <a href="{% url 'company:profile' %}" class=" btn btn-success style-none">
+                Registrarse
+              </a>
               <button type="submit" class="btn btn-success">Iniciar sesión</button>
             </div>
           </form>

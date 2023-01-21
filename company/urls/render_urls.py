@@ -9,6 +9,8 @@ urlpatterns = [
     path('profile', ProfileTemplateView.as_view(), name='profile'),
     path('login', LoginTemplateView.as_view(), name='login'),
     path('', PublicationTemplateView.as_view(), name='publication'),
-    path('details', DetailsTemplateView.as_view(), name='details')
+    path('/<int:id>', PublicationTemplateView.as_view(), name='publication'),
+    path('details', DetailsTemplateView.as_view(), name='details'),
+    path('details/<int:id>', DetailsTemplateView.as_view(), name='details'),
 ]
 

@@ -16,19 +16,21 @@ class LoginTemplateView(TemplateView):
 
 class PublicationTemplateView(TemplateView):
     template_name: str = "publication.html"
-    
-    def get_context_data(self) -> Dict[str, Any]:
-        context: Dict[str, Any] = super().get_context_data()
-        context['x'] = range(12)
-        return context
 
-
-
+ 
 class ProfileTemplateView(TemplateView):
     template_name: str = "profile.html"
 
+    def get_context_data(self, **kwargs) -> Dict[str, Any]:
+        context: Dict[str, Any] = super().get_context_data()
+        context["id"]=kwargs.get("id")
+        return context
 
 class DetailsTemplateView(TemplateView):
     template_name: str = "details.html"
     
 
+    def get_context_data(self, **kwargs) -> Dict[str, Any]:
+        context: Dict[str, Any] = super().get_context_data()
+        context["id"]=kwargs.get("id")
+        return context
