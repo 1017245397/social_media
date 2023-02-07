@@ -1,3 +1,4 @@
+from typing import Any
 from company.models import CompanyModel, ContactCompanyModel,  CategoryCompanyModel, \
      GaleryCompanyModel , CommentCompanyModel
 from company.serializers import CompanySerializer, ContactCompanySerializer, CategoryCompanySerializer, \
@@ -9,7 +10,6 @@ class CompanyViewSet(viewsets.ModelViewSet):
     '''API para companias'''
     queryset = CompanyModel.objects.all()
     serializer_class = CompanySerializer
-
 
 class ContactCompanyViewSet(viewsets.ModelViewSet):
     '''API para contactos de la compania'''

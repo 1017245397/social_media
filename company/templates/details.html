@@ -8,46 +8,156 @@
     text-decoration: none;
     color: inherit;
   }
-  </style>
+  /* footer social icons */
+  ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left:0 !important;
+    padding: 0;
+  }
+  ul.social-network li {
+    display: inline;
+    margin: 0 5px;
+  }
+
+  /* footer social icons */
+  #IdFooter .social-network a.icoRss:hover {
+    background-color: #F56505;
+  }
+  #IdFooter .social-network a.icoFacebook:hover {
+    background-color:#3B5998;
+  }
+  #IdFooter .social-network a.icoTwitter:hover {
+    background-color:#33ccff;
+  }
+  #IdFooter .social-network a.icoGoogle:hover {
+    background-color:#BD3518;
+  }
+  #IdFooter .social-network a.icoVimeo:hover {
+    background-color:#0590B8;
+  }
+  #IdFooter .social-network a.icoLinkedin:hover {
+    background-color:#007bb7;
+  }
+  #IdFooter .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+  #IdFooter .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+    color:#fff;
+  }
+  #IdFooter a.socialIcon:hover, .socialHoverClass {
+    color:#44BCDD;
+  }
+
+  #IdFooter .social-circle li a {
+    display:inline-block;
+    position:relative;
+    margin:0 auto 0 auto;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    border-radius:50%;
+    text-align:center;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+  #IdFooter .social-circle li i {
+    margin:0;
+    line-height:38px;
+    text-align: center;
+  }
+
+  #IdFooter .social-circle li a:hover i, .triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  #IdFooter .social-circle i {
+    color: #fff;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+  }
+
+  #IdFooter a {
+  background-color: #D3D3D3;   
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 22px;
+  }
+  strong {
+    display: inline-block;
+  }
+
+  p {
+    display: inline-block;
+  }
+</style>
 {% endblock %}
 
 {% block content %} 
-{{id}}
-<a href="#" onclick="window.history.back();">Volver</a>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4" style="text-align: center; background-color: #d8f8e1!important;
-     padding: 35px; align-items: center">
-      <!-- Contenido de la primera columna -->
-      <img src="{% static 'img/imagotipo-pilar.png' %}"  alt="Imagen 2" class"foto">
-      <p class="tipo_comunidad text-center">
-        <strong>NIT:</strong> <div class="" id="nit"></div>
-      </p> 
-      <strong>Emprendimeitno realizado por:</strong>
-      <p class="tipo_comunidad" id="category"></p>
-      <strong>DATOS DE CONTACTO</strong>
-      <strong>Departamento:</strong>
-      <p class="tipo_comunidad" id="department"></p>
-      <strong>Ciudad:</strong>
-      <p class="tipo_comunidad" id="city"></p>
-      <strong>Dirección:</strong>
-      <p class="tipo_comunidad" id="address"></p>
-      <strong>Numero de Contacto:</strong>
-      <p class="tipo_comunidad" id="number"></p>
-      <strong>Pagina web:</strong>
-      <p class="tipo_comunidad" id="web_site"></p>
+<div class="d-flex h-100">
+  <div class="row w-100 h-100">
+    <div class="col-md-3" style="background-color: #d8f8e1!important;
+    padding: 35px; align-items: left">
+      <div style="text-align: center;">
+        <img src="https://picsum.photos/200/150/?random"  alt="Imagen 2" class="foto">
+        <div id="IdFooter" class="panel-footer text-right mb-5 mt-5">
+          <ul class="social-network social-circle">
+            <li><a href="{{company.web_site}}" class="icoRss" title="Web Site"><i class="fa fa-rss"></i></a></li>
+            <li><a href="{{company.facebook}}" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="{{company.linkedin}}" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="{{company.instagram}}" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <h1 class="mb-4" style="text-align: center;">Datos de contacto</h1>
+      <ul style="text-align: left;">
+        <li><strong>Razon social:</strong><p id="name"></p></li>
+        <li><strong>NIT:</strong><p id="nit"></p></li>
+        <li><strong>Emprendimiento realizado por:</strong><p id="names"></p></li>
+        <li><strong>Pais:</strong><p id="country"></p></li>
+        <li><strong>Departamento:</strong><p id="deparment"></p></li>
+        <li><strong>Ciudad:</strong><p id="city"></p></li>
+        <li><strong>Dirección:</strong><p id="address"></p></li>
+        <li><strong>Numero de Contacto:</strong><p id="phone"></p></li>
+        <li><strong>Pagina web:</strong><p id="web_site"></p></li>
+        <li><strong>Correo:</strong><p id="email_company"></p></li>
+      </ul>
     </div>
-    <div class="col-md-8">
-      <!-- Contenido de la segunda columna -->
-      <label class=""for="nombres"><strong>Razon Social:</strong></label>
-      <h1 class="nombre" id="name"></h1>
-      <strong>Descripción:</strong>
-      <p class="" id="description"></p>
-      <strong>Misión:</strong>
-      <p class="" id="mision"></p>
-      <strong>Visión:</strong>
-      <p class="" id="vision"></p>
-      <div>
+    <div class="col-md-9">
+      <dl class="row">
+        <dt class="col-sm-12">
+          <strong>Descripción:</strong>
+        </dt>
+        <dd class="col-sm-12">
+          <p id="description"></p>
+        </dd>
+        <dt class="col-sm-12">
+          <strong>Misión:</strong>
+        </dt>
+        <dd class="col-sm-12">
+          <p id="mision"></p>
+        </dd>
+        <dt class="col-sm-12">
+          <strong>Visión:</strong>
+        </dt>
+        <dd class="col-sm-12">
+          <p id="vision"></p>
+        </dd>
+      </dl> 
     </div>
   </div>
 </div>

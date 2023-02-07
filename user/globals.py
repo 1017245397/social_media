@@ -12,11 +12,11 @@ CIVIL_ESTATUS_CHOICES = (
     ("DIVORCED", "Divorciado"),
     ("WIDOWED", "Viudo"),
     ("OTHER", "Otros")
-    )
+)
 
 
 GENDER_CHOICES = (
     ("F", "Femenino"),
     ("M", "Masculino"),
     ("OTHER", "Otros")
-    )
+)

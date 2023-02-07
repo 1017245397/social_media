@@ -23,7 +23,7 @@
               <a href="{% url 'company:profile' %}" class=" btn btn-success style-none">
                 Registrarse
               </a>
-              <button type="submit" class="btn btn-success">Iniciar sesión</button>
+              <button type="button" onclick="login()" class="btn btn-success">Iniciar sesión</button>
             </div>
           </form>
         </div>
@@ -35,6 +35,52 @@
 
 {%endblock%}
 {% block javascript %}
+<script>
+  var csrftoken = Cookies.get('csrftoken');
+  function getFormValues() {
+    // Select the form element
+    var form = document.querySelector("form");
+  
+    // Get a list of all the input elements in the form
+    var inputs = form.querySelectorAll("input, textarea, select");
+  
+    // Use the map() method to create an object for each input element
+    var values = Array.prototype.map.call(inputs, function(input) {
+      return {
+        [input.name]: input.value
+      };
+    });
+      const object = values.reduce((obj, item) => {
+      const key = Object.keys(item)[0];
+      obj[key] = item[key];
+      return obj;
+    }, {});
+      return object;
+  }
+
+  async function setDataForUrl(url, data) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          'X-CSRFToken': csrftoken
+        }
+      });
+      return await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function login() {
+    var data_login = getFormValues();
+    setDataForUrl("{% url 'login-auth' %}", data_login).then(function(user) {
+      location.href = "/";
+    });
+  }
+</script>
  
          
 {% endblock %}

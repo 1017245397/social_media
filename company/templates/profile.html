@@ -13,130 +13,199 @@
 
 {% block content %} 
 <form id="register">
+  {% csrf_token %}
   <div class="container">
     <div class="card border-success mt-2">
       <div class="card-body">
         <h2>Datos de emprendedor</h2>
         <div class="row">
-          <div class="col-md-6">
-            <!-- Contenido de la primera columna -->
-            <label class="text-success" for="documentos">Documentos</label><br>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="documentos">Tipo de documento</label>
             <select class="form-control border-success" id="documentos" name="type_document">
-              <option value="1"></option>   
-              <option value="DNI">DNI</option>
-              <option value="Pasaporte">Cedula de Extranjeria</option>
-              <option value="Cédula">Cédula</option>
-            </select><br>
-            <label class="text-success" for="nombres">Nombres</label><br>
-            <input class="form-control border-success" type="text" id="nombres" name="first_names"><br>
-            <label class="text-success" for="fecha">Fecha</label><br>
-            <input class="form-control border-success" type="date" id="fecha" name="birthdate"><br>
-            <label class="text-success" for="estado-civil">Estado civil</label><br>
+              <option value="0">Seleccione el tipo de documento</option>  
+              <option value="TI">Tarjeta de identidad</option> 
+              <option value="CC">cedula de ciudadania</option>
+              <option value="CE">Cedula de extrtanjeria</option>
+              <option value="OTHER">Otros</option>
+            </select>
+            <small class="form-text text-muted">Tipo de documento</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="numero-identificacion ">Número de identificación</label>
+            <input class="form-control border-success" type="text" id="numero-identificacion" name="document">
+            <small class="form-text text-muted">Numero de identificación</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="fecha">Fecha</label>
+            <input class="form-control border-success" type="date" id="fecha" name="birthdate">
+            <small class="form-text text-muted">Fecha</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="nombres">Nombres</label>
+            <input class="form-control border-success" type="text" id="nombres" name="first_names">
+            <small class="form-text text-muted">Nombres</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="apellidos">Apellidos</label>
+            <input class="form-control border-success" type="text" id="apellidos" name="last_names">
+            <small class="form-text text-muted">Apellidos</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="estado-civil">Estado civil</label>
             <select class="form-control border-success" id="estado-civil" name="civil_status">
-              <option value="1"></option>   
-              <option value="Soltero">Soltero</option>
-              <option value="Casado">Casado</option>
-              <option value="Viudo">Viudo</option>
-              <option value="Divorciado">Divorciado</option>
-            </select><br>
-
+              <option value="0">Seleccione el estado civil</option>   
+              <option value="SINGLE">Soltero</option>
+              <option value="MARRIED">Casado</option>
+              <option value="DIVORCED">Viudo</option>
+              <option value="WIDOWED">Divorciado</option>
+              <option value="OTHER">Otros</option>
+            </select>
+            <small class="form-text text-muted">Departamento</small>
           </div>
-          <div class="col-md-6">
-            <!-- Contenido de la segunda columna -->
-            <label class="text-success" for="numero-identificacion ">Número de identificación</label><br>
-            <input class="form-control border-success" type="text" id="numero-identificacion" name="document"><br>
-            <label class="text-success" for="apellidos">Apellidos</label><br>
-            <input class="form-control border-success" type="text" id="apellidos" name="last_names"><br>
-            <label class="text-success" for="genero">Género</label><br>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="genero">Género</label>
             <select class="form-control border-success" id="genero" name="gender">
-              <option value="1"></option>   
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-              <option value="Otro">Otro</option>
-            </select><br>
-            <label class="text-success" for="numero">Número de telefono</label><br>
-            <input class="form-control border-success" type="text" id="numero" name="phone_number"><br>  
+              <option value="0">Seleccione el genero</option>   
+              <option value="M">Hombre</option>
+              <option value="F">Mujer</option>
+              <option value="OTHER">Otro</option>
+            </select>
+            <small class="form-text text-muted">Departamento</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="numero">Número de telefono</label>
+            <input class="form-control border-success" type="text" id="numero" name="phone_number">  
+            <small class="form-text text-muted">Número de telefono</small>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="card border-success mt-2">
-      <div class="card-body">
-        <h2>Datos de emprendimiento</h2>    
+        <h2 class="mt-2">Datos de emprendimiento</h2>    
         <div class="row">
-          <div class="col-md-6">
-            <!-- Contenido de la primera columna -->
-            <label class="text-success" for="name">Razon Social</label><br>
-            <input class="form-control border-success" type="text" id="name" name="name"><br>
-            <label class="text-success" for="departamento">Departamento</label><br>
-            <input class="form-control border-success" type="text" id="departamento" name="department"><br>
-            <label class="text-success" for="email_company">Dirección</label><br>
-            <input class="form-control border-success" type="text" id="address" name="address"><br>
-            <label class="text-success" for="facebook">Facebook</label><br>
-            <input class="form-control border-success" type="text" id="facebook" name="facebook"><br>
-            <label class="text-success" for="linkedin">Linkedin</label><br>
-            <input class="form-control border-success" type="text" id="linkedin" name="linkedin"><br>  
-            <label class="text-success" for="email_company">Correo de la compañia</label><br>
-            <input class="form-control border-success" type="text" id="email_company" name="email_company"><br>         
+          <div class="form-group col-md-6">
+            <label class="text-success" for="name">Razon Social</label>
+            <input class="form-control border-success" type="text" id="name" name="name">
+            <small class="form-text text-muted">Razon social</small>
           </div>
-          <div class="col-md-6">
-            <!-- Contenido de la segunda columna -->
-            <label class="text-success" for="nit">NIT</label><br>
-            <input class="form-control border-success" type="text" id="nit" name="nit"><br>
-            <label class="text-success" for="categoria">Categorias</label><br>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="nit">NIT</label>
+            <input class="form-control border-success" type="text" id="nit" name="nit">
+            <small class="form-text text-muted">NIT</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="email_company">Dirección</label>
+            <input class="form-control border-success" type="text" id="address" name="address">
+            <small class="form-text text-muted">Dirrecion</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="email_company">Correo de la compañia</label>
+            <input class="form-control border-success" type="text" id="email_company" name="email_company">       
+            <small class="form-text text-muted">Correo de la compañia</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="numero_celular">Numero de celular</label>
+            <input class="form-control border-success" type="text" id="numero_celular" name="cell_phone">
+            <small class="form-text text-muted">Numero de celular</small>
+          </div>
+        </div>
+        <h2 class="mt-2">Redes sociales</h2>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="text-success" for="facebook">Facebook</label>
+            <input class="form-control border-success" type="text" id="facebook" name="facebook">
+            <small class="form-text text-muted">Facebook</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="linkedin">Linkedin</label>
+            <input class="form-control border-success" type="text" id="linkedin" name="linkedin">
+            <small class="form-text text-muted">Linkedin</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="instagram">Instagram</label>
+            <input class="form-control border-success" type="text" id="instagram" name="instagram">
+            <small class="form-text text-muted">Instagram</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="web_site">Pagina Web</label>
+            <input class="form-control border-success" type="text" id="web_site" name="web_site">           
+            <small class="form-text text-muted">Pagina web</small>
+          </div>
+        </div>
+        <h2 class="mt-2">Categorias</h2>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label class="text-success" for="categoria">Categorias</label>
             <select class="form-control border-success" id="poblacion_emprendimiento" name="category">
-              <option value="1"></option>            
-              <option value="comida">Comida</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select><br>
-            <label class="text-success" for="ciudad">Ciudad</label><br>
-            <input class="form-control border-success" type="text" id="ciudad" name="city"><br>
-            <label class="text-success" for="numero_celular">Numero de celular</label><br>
-            <input class="form-control border-success" type="text" id="numero_celular" name="cell_phone"><br>
-            <label class="text-success" for="instagram">Instagram</label><br>
-            <input class="form-control border-success" type="text" id="instagram" name="instagram"><br>
-            <label class="text-success" for="web_site">Pagina Web</label><br>
-            <input class="form-control border-success" type="text" id="web_site" name="web_site"><br>            
-          </div>
-          <div>
-            <label class="text-success" for="description">Descripción</label><br>
-            <textarea class="form-control border-success" type="text" id="description" name="description"></textarea>
-            <label class="text-success mt-3" for="mision">Misión</label><br>
-            <textarea class="form-control border-success" type="text" id="mision" name="mision"></textarea>
-            <label class="text-success mt-3" for="vision">Visión</label><br>
-            <textarea class="form-control border-success" type="text" id="vision" name="vision"></textarea>
+              <option value="0">Seleccione la categoria</option>            
+            </select>
+            <small class="form-text text-muted">Categorias</small>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-  <div class="card border-success mt-2">
-    <div class="card-body">
-      <h2>Usuario</h2> 
+        <h2 class="mt-2">Ubicacion</h2>
         <div class="row">
+          <div class="form-group col-md-4">
+            <label class="text-success" for="departamento">Pais</label>
+            <select class="form-control border-success" id="country" name="country" onchange="changeDeparment(this)">
+              <option value="0">Seleccione un pais</option>
+            </select>
+            <small class="form-text text-muted">Pais</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="deparment">Departamento</label>
+            <select class="form-control border-success" id="deparment" name="deparment" onchange="changeCity(this)">
+              <option value="0">Seleccione un departamento</option>
+            </select>  
+            <small class="form-text text-muted">Departamento</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="text-success" for="city">Ciudad</label>
+            <select class="form-control border-success" id="city" name="city">
+              <option value="0">Seleccione una ciudad</option>
+            </select>
+            <small class="form-text text-muted">Ciudad</small>
+          </div>
+        </div>
+        <h2 class="mt-2">Detalles de la empresa</h2>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label class="text-success" for="description">Descripción</label>
+            <textarea class="form-control border-success" type="text" id="description" name="description"></textarea>          
+            <small class="form-text text-muted">Descripción</small>
+          </div>
+          <div class="form-group col-md-12">
+            <label class="text-success mt-3" for="mision">Misión</label>
+            <textarea class="form-control border-success" type="text" id="mision" name="mision"></textarea>            
+            <small class="form-text text-muted">Misión</small>
+          </div>
+          <div class="form-group col-md-12">
+            <label class="text-success mt-3" for="vision">Visión</label>
+            <textarea class="form-control border-success" type="text" id="vision" name="vision"></textarea>            
+            <small class="form-text text-muted">Vision</small>
+          </div>
+        </div>
+        <h2 class="mt-2">Usuario</h2> 
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="text-success" for="username">Usuario</label>        
+            <input class="form-control border-success" id="username" name="username">
+            <small class="form-text text-muted">Usuario</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="email">Correo electrónico</label>        
+            <input class="form-control border-success" type="email" id="email" name="email">
+            <small class="form-text text-muted">Correo electrónico</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="password">Contraseña</label>
+            <input class="form-control border-success" type="password" id="password" name="password">
+            <small class="form-text text-muted">Contraseña</small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="text-success" for="confirmar-contrasena">Confirmar contraseña</label>
+            <input class="form-control border-success" type="password" id="comfirm-password" name="confirm-password">    
+            <small class="form-text text-muted">Confirmar contraseña</small>
+          </div>
           <div>
-            <label class="text-success" for="correo-electronico-usuario">Correo electrónico</label><br>        
-            <input class="form-control border-success" type="email" id="correo-electronico" name="user"><br>
-          </div>
-          <div class="col-md-6">
-            <!-- Contenido de la primera columna -->
-
-            <label class="text-success" for="contrasena">Contraseña</label><br>
-            <input class="form-control border-success" type="password" id="contrasena" name="password"><br>
-          </div>
-          <div class="col-md-6">
-            <!-- Contenido de la segunda columna -->
-
-            <label class="text-success" for="confirmar-contrasena">Confirmar contraseña</label><br>
-            <input class="form-control border-success" type="password" id="confirmar-contrasena" name="confirm-password"><br>    
-          </div>
-          <div>
-            <button type="button" id="save-company" class="btn btn-success border-success" onclick="saveCompany()">
+          <div class="col-md-12">
+            <button type="button" id="save-company" class="btn btn-success border-success w-100 mt-3" onclick="save()">
             Guardar
             </button>
           </div>
@@ -151,6 +220,8 @@
 
 <script>
   var id = false;
+  var csrftoken = Cookies.get('csrftoken');
+
 
   {% if id %}
     var id = "{{id}}";
@@ -174,157 +245,133 @@
       obj[key] = item[key];
       return obj;
     }, {});
-
-      return JSON.stringify(object);
+      return object;
   }
 
-  function saveUser () {
+  async function setDataForUrl(url, data) {
+    try {
+      const response = await fetch(url, {
+        method: id ? "PUT" : "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          'X-CSRFToken': csrftoken
+        }
+      });
+      return await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function getDataForUrl(url) {
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      Object.keys(data).forEach(function(key) {
+        try {
+            let object = document.getElementById(key);
+            object.value = data[key];
+          } catch (error) {
+          console.log(key)
+        }
+      })
+    });
+  }
+
+  async function getDataForSelectOptionUrl(url, key) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      const selectElements = document.getElementsByName(key);
+
+      selectElements.forEach(select => {
+        data.forEach(option => {
+          const opt = document.createElement("option");
+          opt.value = option.id;
+          opt.text = option.name;
+          select.add(opt);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function saveUser(data) {
     // Set the endpoint URL
     var url = "/api-user/user/";
-    
-    if (id) {
-      url += `${id}/`
-    }
-
-    // Set the request body
-    var data =  getFormValues();
-
-    // Send the request
-    fetch(url, {
-      method: id ? "PUT" : "POST",
-      body: data,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(function(data) {
-      console.log(data);
-    });
+    return setDataForUrl(url, data);
   }
 
-  function saveProfileUser () {
-    // Set the endpoint URL
-    var url = "/api-user/profile-user/";
-    
-    if (id) {
-      url += `${id}/`
-    }
-
-    // Set the request body
-    var data =  getFormValues();
-
-    // Send the request
-    fetch(url, {
-      method: id ? "PUT" : "POST",
-      body: data,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(function(data) {
-      console.log(data);
-    });
-  }
-
-  function saveCompany() {
+  function saveCompany(data) {
     // Set the endpoint URL
     var url = "/api-company/list/";
-    if (id) {
-      url += `${id}/`
-    }
+    return setDataForUrl(url, data);
+  }
 
-    // Set the request body
-    var data =  getFormValues();
-
-    // Send the request
-    fetch(url, {
-      method: id ? "PUT" : "POST",
-      body: data,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(function(data) {
-      console.log(data);
-    });
+  function saveProfileUser (data) {
+    // Set the endpoint URL
+    var url = "/api-user/profile-user/";
+    return setDataForUrl(url, data);
   }
 
   function getCompany(id) {
     // Set the endpoint URL
     var url = `/api-company/list/${id}`;
-    
-    // get data companies 
-    fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      Object.keys(data).forEach(function(key) {
-        try {
-            let object = document.getElementById(key);
-            object.value = data[key];
-          } catch (error) {
-            console.log(key)
-        }
-      })
-    });
+    getDataForUrl(url);
   }
   
   function getCountry() {
     // Set the endpoint URL
     var url = `/api-location/country/`;
-    
-    // get data companies 
-    fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      Object.keys(data).forEach(function(key) {
-        try {
-            let object = document.getElementById(key);
-            object.value = data[key];
-          } catch (error) {
-            console.log(key)
-        }
-      })
-    });
+    getDataForSelectOptionUrl(url, "country");
   }
-  
-  function getDeparment() {
+
+  function getDeparment(id) {
     // Set the endpoint URL
     var url = `/api-location/deparment/`;
-    
-    // get data companies 
-    fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      Object.keys(data).forEach(function(key) {
-        try {
-            let object = document.getElementById(key);
-            object.value = data[key];
-          } catch (error) {
-            console.log(key)
-        }
-      })
-    });
+    getDataForUrl(url);
   }
   
   function getCity() {
     // Set the endpoint URL
     var url = `/api-location/city/`;
-    
-    // get data companies 
-    fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      Object.keys(data).forEach(function(key) {
-        try {
-            let object = document.getElementById(key);
-            object.value = data[key];
-          } catch (error) {
-            console.log(key)
-        }
-      })
+    getDataForUrl(url);
+  }
+
+  function changeDeparment(country) {
+    var url = `/api-location/deparment/?country=${country.value}`;
+    getDataForSelectOptionUrl(url, "deparment");
+  }
+
+  function changeCity(department) {
+    var url = `/api-location/city/?department=${department.value}`;
+    getDataForSelectOptionUrl(url, "city");
+  }
+  
+  function save() {
+    var data_save = getFormValues();
+
+    saveUser(data_save).then(function(user) {
+      data_save["user"] = user.id;
+      console.log(user);
+      saveCompany(data_save).then(function(company) {
+        console.log(company);
+      });
+      saveProfileUser(data_save).then(function(profile) {
+        console.log(profile);
+      });
+      location.href = "/"
     });
   }
   
   document.addEventListener("DOMContentLoaded",function(event){
     if (id) {
       getCompany("{{id}}");
+    } else {
+      getCountry();
     }
   });
 </script>
